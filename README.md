@@ -1,5 +1,21 @@
 # java-lotto-precourse
 
+## 프로그래밍 요구 사항
+
+- [ ] 값을 하드 코딩하지 않는다.
+- [ ] 클래스는 상수, 멤버 변수, 생성자, 메서드 순으로 작성한다.
+- [ ] 변수 이름에 자료형은 사용하지 않는다.
+- [ ] indent(인덴트, 들여쓰기) depth는 2까지만 허용한다.
+- [ ] 3항 연산자를 사용하지 않는다.
+- [ ] 함수의 길이가 15라인을 넘어가지 않도록 한다.
+- [ ] 함수가 한 가지 기능만 담당하게 한다.
+- [ ] `else`, `switch/case`를 사용하지 않는다.
+- [ ] Java Enum을 적용한다.
+- [ ] Random값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
+- [ ] 사용자 입력은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`를 활용한다.
+- [ ] 제공된 `Lotto` 클래스를 사용하여 구현한다.
+- [ ] 단위 테스트를 작성한다.
+
 ## 기능 목록
 
 ### 입력
