@@ -8,6 +8,7 @@ public class InputView {
     private static int LOTTO_PRICE_UNIT = 1000;
 
     public int readLottoPurchaseAmount() {
+        System.out.println(Prompt.INPUT_LOTTO_PURCHASE_AMOUNT.Question());
         String input = Console.readLine();
 
         return parseLottoPurchaseAmount(input);
