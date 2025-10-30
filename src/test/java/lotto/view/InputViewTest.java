@@ -1,8 +1,9 @@
 package lotto.view;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,5 +61,15 @@ class InputViewTest {
             inputView.parseLottoPurchaseAmount(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT.Message());
+    }
+
+    @Test
+    @DisplayName("당첨 번호를 숫자 리스트로 변환한다.")
+    void 당첨_번호_파싱() {
+        String input = "1,2,3,4,5,6";
+
+        List<Integer> winningNumbers = inputView.parseWinningNumbers(input);
+
+        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

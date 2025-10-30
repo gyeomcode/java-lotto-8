@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 import lotto.exception.ErrorMessage;
 
 public class InputView {
@@ -14,6 +16,13 @@ public class InputView {
         return parseLottoPurchaseAmount(input);
     }
 
+    public List<Integer> readWinningNumbers() {
+        System.out.println(Prompt.INPUT_WINNING_NUMBERS.Question());
+        String input = Console.readLine();
+
+        return parseWinningNumbers(input);
+    }
+
     int parseLottoPurchaseAmount(String input) {
         try {
             int lottoPurchaseAmount = Integer.parseInt(input.trim());
@@ -24,6 +33,15 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
         }
+    }
+
+    List<Integer> parseWinningNumbers(String input) {
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::valueOf)
+                .toList();
+
+        return winningNumbers;
     }
 
     private void validateLottoPurchaseAmount(int purchaseAmount) {
