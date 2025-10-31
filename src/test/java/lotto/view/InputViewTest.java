@@ -73,4 +73,13 @@ class InputViewTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INT_RANGE_EXCEEDED.Message());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"10", " 10", "10 ", " 10 ", "  10"})
+    @DisplayName("입력한 보너스 번호를 trim 후 숫자로 변환한다.")
+    void 보너스번호_파싱(String input) {
+        int result = inputView.parseBonusNumber(input);
+
+        assertThat(result).isEqualTo(10);
+    }
 }

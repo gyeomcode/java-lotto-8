@@ -8,5 +8,6 @@ public class Application {
 
         inputView.readLottoPurchaseAmount();
         inputView.readWinningNumbers();
+        inputView.readBonusNumber();
     }
 }

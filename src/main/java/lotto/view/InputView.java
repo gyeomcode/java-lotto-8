@@ -3,13 +3,14 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.exception.ErrorMessage;
 
 public class InputView {
     public LottoPurchaseAmount readLottoPurchaseAmount() {
-        System.out.println(Prompt.INPUT_LOTTO_PURCHASE_AMOUNT.Question());
+        System.out.println(Prompt.INPUT_LOTTO_PURCHASE_AMOUNT.Text());
         String input = Console.readLine();
 
         int lottoPurchaseAmount = parseLottoPurchaseAmount(input);
@@ -18,12 +19,21 @@ public class InputView {
     }
 
     public WinningNumbers readWinningNumbers() {
-        System.out.println(Prompt.INPUT_WINNING_NUMBERS.Question());
+        System.out.println(Prompt.INPUT_WINNING_NUMBERS.Text());
         String input = Console.readLine();
 
         List<Integer> winningNumbers = parseWinningNumbers(input);
 
         return new WinningNumbers(winningNumbers);
+    }
+
+    public BonusNumber readBonusNumber() {
+        System.out.println(Prompt.INPUT_BONUS_NUMBER.Text());
+        String input = Console.readLine();
+
+        int bonusNumber = parseBonusNumber(input);
+
+        return new BonusNumber(bonusNumber);
     }
 
     int parseLottoPurchaseAmount(String input) {
@@ -47,5 +57,11 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
         }
+    }
+
+    int parseBonusNumber(String input) {
+        int bonusNumber = Integer.parseInt(input.trim());
+
+        return bonusNumber;
     }
 }
