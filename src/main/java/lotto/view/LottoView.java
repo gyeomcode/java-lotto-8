@@ -15,4 +15,6 @@ public interface LottoView {
     void printIssuedLotto(List<Lotto> issuedLotto);
 
     void printWinningResult(Map<LottoPrize, Integer> winningResult);
+
+    void printProfitRate(double profitRate);
 }
