@@ -14,4 +14,6 @@ public interface LottoService {
             List<Integer> winningNumbers,
             int bonusNumber
     );
+
+    Double calculateProfitRate(Map<LottoPrize, Integer> winningResult, int lottoPurchaseAmount);
 }

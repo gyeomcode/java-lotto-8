@@ -68,11 +68,23 @@ class LottoServiceImplTest {
                 bonusNumber
         );
 
-        assertThat(result).containsEntry(LottoPrize.SECOND, 1);
         assertThat(result).containsEntry(LottoPrize.FIRST, 1);
+        assertThat(result).containsEntry(LottoPrize.SECOND, 1);
         assertThat(result).containsEntry(LottoPrize.FIFTH, 1);
         assertThat(result.values().size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("수익률을 계산한다.")
+    void 수익률을_계산한다() {
+        Map<LottoPrize, Integer> winningResult = Map.of(LottoPrize.FIFTH, 1);
+        int lottoPurchaseAmount = 8000;
+
+        double result = lottoService.calculateProfitRate(winningResult, lottoPurchaseAmount);
+
+        assertThat(result).isEqualTo(62.5);
+    }
+
 
     private static Stream<Arguments> provideStringsForfindPrize() {
         return Stream.of(

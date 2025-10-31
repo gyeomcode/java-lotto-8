@@ -40,6 +40,16 @@ public class LottoServiceImpl implements LottoService {
         return winningResult;
     }
 
+    @Override
+    public Double calculateProfitRate(Map<LottoPrize, Integer> winningResult, int lottoPurchaseAmount) {
+        int totalPrize = winningResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().Amount() * entry.getValue())
+                .sum();
+        double profitRate = (double) totalPrize / lottoPurchaseAmount * 100;
+
+        return Math.round(profitRate * 10) / 10.0;
+    }
+
     private int getLottoCount(int amount) {
         return amount / LottoRule.LOTTO_PRICE_UNIT;
     }
