@@ -29,4 +29,9 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.Message());
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

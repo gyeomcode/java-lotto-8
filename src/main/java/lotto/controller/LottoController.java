@@ -7,14 +7,14 @@ import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.generator.RandomLottoNumberGenerator;
 import lotto.service.LottoService;
-import lotto.view.InputView;
+import lotto.view.LottoView;
 
 public class LottoController {
-    private final InputView inputView;
+    private final LottoView lottoView;
     private final LottoService lottoService;
 
-    public LottoController(InputView inputView, LottoService lottoService) {
-        this.inputView = inputView;
+    public LottoController(LottoView lottoView, LottoService lottoService) {
+        this.lottoView = lottoView;
         this.lottoService = lottoService;
     }
 
@@ -22,6 +22,7 @@ public class LottoController {
         LottoPurchaseAmount lottoPurchaseAmount = requestLottoPurchaseAmount();
         List<Lotto> issuedLotto = lottoService
                 .issueLotto(lottoPurchaseAmount.getAmount(), new RandomLottoNumberGenerator());
+        lottoView.printIssuedLotto(issuedLotto);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
         requestBonusNumber(winningNumbers);
@@ -30,7 +31,7 @@ public class LottoController {
     private LottoPurchaseAmount requestLottoPurchaseAmount() {
         while (true) {
             try {
-                int lottoPurchaseAmount = inputView.readLottoPurchaseAmount();
+                int lottoPurchaseAmount = lottoView.readLottoPurchaseAmount();
                 return new LottoPurchaseAmount(lottoPurchaseAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -41,7 +42,7 @@ public class LottoController {
     private WinningNumbers requestWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = inputView.readWinningNumbers();
+                List<Integer> winningNumbers = lottoView.readWinningNumbers();
                 return new WinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -52,7 +53,7 @@ public class LottoController {
     private BonusNumber requestBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
-                int bonusNumber = inputView.readBonusNumber();
+                int bonusNumber = lottoView.readBonusNumber();
                 return new BonusNumber(bonusNumber, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

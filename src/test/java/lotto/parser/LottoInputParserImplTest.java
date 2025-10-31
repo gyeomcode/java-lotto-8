@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoInputParserTest {
-    private final InputParser inputParser = new LottoInputParser();
+class LottoInputParserImplTest {
+    private final LottoInputParser lottoInputParser = new LottoInputParserImpl();
 
     @ParameterizedTest
     @ValueSource(strings = {"5000", " 5000", "5000 ", " 5000 ", "  5000"})
     @DisplayName("문자열을 trim 처리하고 숫자로 변환한다.")
     void 문자열_숫자_변환(String input) {
-        int result = inputParser.parseToInt(input);
+        int result = lottoInputParser.parseToInt(input);
 
         assertThat(result).isEqualTo(5000);
     }
@@ -27,7 +27,7 @@ class LottoInputParserTest {
     @DisplayName("숫자가 아닌 문자열을 변환하면 예외가 발생한다.")
     void 숫자가_아닌_문자열_예외(String input) {
         assertThatThrownBy(() -> {
-            inputParser.parseToInt(input);
+            lottoInputParser.parseToInt(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INT_RANGE_EXCEEDED.Message());
     }
@@ -38,7 +38,7 @@ class LottoInputParserTest {
         String input = "2147483648";
 
         assertThatThrownBy(() -> {
-            inputParser.parseToInt(input);
+            lottoInputParser.parseToInt(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INT_RANGE_EXCEEDED.Message());
     }
@@ -48,7 +48,7 @@ class LottoInputParserTest {
     void 문자열_숫자리스트_변환() {
         String input = "1,2,3,4,5,6";
 
-        List<Integer> winningNumbers = inputParser.parseToIntegerList(input);
+        List<Integer> winningNumbers = lottoInputParser.parseToIntegerList(input);
 
         assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
@@ -58,7 +58,7 @@ class LottoInputParserTest {
     @DisplayName("리스트 내 숫자가 아닌 값이 포함되어 있으면 예외가 발생한다.")
     void 숫자가_아닌_리스트_예외(String input) {
         assertThatThrownBy(() -> {
-            inputParser.parseToIntegerList(input);
+            lottoInputParser.parseToIntegerList(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INT_RANGE_EXCEEDED.Message());
     }
@@ -69,7 +69,7 @@ class LottoInputParserTest {
         String input = "2147483648,2,3,4,5,6";
 
         assertThatThrownBy(() -> {
-            inputParser.parseToIntegerList(input);
+            lottoInputParser.parseToIntegerList(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INT_RANGE_EXCEEDED.Message());
     }
