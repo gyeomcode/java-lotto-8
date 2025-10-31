@@ -1,66 +1,39 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoPurchaseAmount;
-import lotto.domain.WinningNumbers;
-import lotto.exception.ErrorMessage;
+import lotto.parser.InputParser;
 
 public class InputView {
-    public LottoPurchaseAmount readLottoPurchaseAmount() {
+    private final InputParser inputParser;
+
+    public InputView(InputParser inputParser) {
+        this.inputParser = inputParser;
+    }
+
+    public int readLottoPurchaseAmount() {
         System.out.println(Prompt.INPUT_LOTTO_PURCHASE_AMOUNT.Text());
         String input = Console.readLine();
 
-        int lottoPurchaseAmount = parseLottoPurchaseAmount(input);
+        int lottoPurchaseAmount = inputParser.parseToInt(input);
 
-        return new LottoPurchaseAmount(lottoPurchaseAmount);
+        return lottoPurchaseAmount;
     }
 
-    public WinningNumbers readWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         System.out.println(Prompt.INPUT_WINNING_NUMBERS.Text());
         String input = Console.readLine();
 
-        List<Integer> winningNumbers = parseWinningNumbers(input);
+        List<Integer> winningNumbers = inputParser.parseToIntegerList(input);
 
-        return new WinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 
-    public BonusNumber readBonusNumber() {
+    public int readBonusNumber() {
         System.out.println(Prompt.INPUT_BONUS_NUMBER.Text());
         String input = Console.readLine();
 
-        int bonusNumber = parseBonusNumber(input);
-
-        return new BonusNumber(bonusNumber);
-    }
-
-    int parseLottoPurchaseAmount(String input) {
-        try {
-            int lottoPurchaseAmount = Integer.parseInt(input.trim());
-
-            return lottoPurchaseAmount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
-        }
-    }
-
-    List<Integer> parseWinningNumbers(String input) {
-        try {
-            List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::valueOf)
-                    .toList();
-
-            return winningNumbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
-        }
-    }
-
-    int parseBonusNumber(String input) {
-        int bonusNumber = Integer.parseInt(input.trim());
+        int bonusNumber = inputParser.parseToInt(input);
 
         return bonusNumber;
     }
