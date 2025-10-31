@@ -1,7 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import lotto.common.LottoPrize;
 import lotto.domain.Lotto;
 import lotto.parser.LottoInputParser;
 
@@ -44,5 +48,20 @@ public class LottoViewImpl implements LottoView {
         System.out.println();
         System.out.println(issuedLotto.size() + Prompt.OUTPUT_LOTTO_COUNT_SUFFIX.Text());
         issuedLotto.forEach(System.out::println);
+    }
+
+    @Override
+    public void printWinningResult(Map<LottoPrize, Integer> winningResult) {
+        System.out.println();
+        System.out.println(Prompt.OUTPUT_WINNING_RESULT_TITLE.Text());
+
+        Arrays.stream(LottoPrize.values()).forEach(lottoPrize -> {
+            String formatted = String.format(Prompt.OUTPUT_WINNING_RESULT_FORMAT.Text(),
+                    lottoPrize.matchCount(),
+                    NumberFormat.getInstance().format(lottoPrize.Amount()),
+                    winningResult.getOrDefault(lottoPrize, 0)
+            );
+            System.out.println(formatted);
+        });
     }
 }

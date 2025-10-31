@@ -24,6 +24,10 @@ public enum LottoPrize {
         return amount;
     }
 
+    public int matchCount() {
+        return matchCount;
+    }
+
     public static Optional<LottoPrize> findPrize(int matchCount, boolean bonusMatched) {
         return Arrays.stream(LottoPrize.values())
                 .filter(lottoPrize -> lottoPrize.matchCount == matchCount

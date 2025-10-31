@@ -33,6 +33,7 @@ public class LottoController {
                 winningNumbers.getNumbers(),
                 bonusNumber.getNumber()
         );
+        lottoView.printWinningResult(winningResult);
     }
 
     private LottoPurchaseAmount requestLottoPurchaseAmount() {
