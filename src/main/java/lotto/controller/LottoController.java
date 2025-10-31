@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.common.LottoPrize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseAmount;
@@ -25,7 +27,12 @@ public class LottoController {
         lottoView.printIssuedLotto(issuedLotto);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
-        requestBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = requestBonusNumber(winningNumbers);
+        Map<LottoPrize, Integer> winningResult = lottoService.calculateWinningResult(
+                issuedLotto,
+                winningNumbers.getNumbers(),
+                bonusNumber.getNumber()
+        );
     }
 
     private LottoPurchaseAmount requestLottoPurchaseAmount() {

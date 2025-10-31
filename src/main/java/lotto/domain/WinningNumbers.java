@@ -16,6 +16,10 @@ public class WinningNumbers {
         return numbers.contains(number);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.stream().distinct().toList().size() != LottoRule.LOTTO_NUMBERS_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_LENGTH.Message());

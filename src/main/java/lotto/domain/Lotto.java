@@ -2,7 +2,9 @@ package lotto.domain;
 
 import static lotto.common.LottoRule.LOTTO_NUMBERS_LENGTH;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.common.LottoRule;
 import lotto.exception.ErrorMessage;
 
@@ -12,6 +14,20 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public int countMatches(List<Integer> winningNumbers) {
+        Set<Integer> winningSet = new HashSet<>(winningNumbers);
+
+        return numbers
+                .stream()
+                .filter(number -> winningSet.contains(number))
+                .toList()
+                .size();
+    }
+
+    public boolean isBonusMatched(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validate(List<Integer> numbers) {

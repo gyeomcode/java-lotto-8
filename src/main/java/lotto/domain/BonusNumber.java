@@ -20,6 +20,10 @@ public class BonusNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(int number) {
         if (number < LottoRule.LOTTO_NUMBER_MIN_VALUE
                 || number > LottoRule.LOTTO_NUMBER_MAX_VALUE) {
