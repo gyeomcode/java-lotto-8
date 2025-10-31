@@ -8,9 +8,7 @@ public class LottoInputParser implements InputParser {
 
     public int parseToInt(String input) {
         try {
-            int value = Integer.parseInt(input.trim());
-
-            return value;
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
         }
@@ -18,12 +16,10 @@ public class LottoInputParser implements InputParser {
 
     public List<Integer> parseToIntegerList(String input) {
         try {
-            List<Integer> values = Arrays.stream(input.split(","))
+            return Arrays.stream(input.split(","))
                     .map(String::trim)
                     .map(Integer::valueOf)
                     .toList();
-
-            return values;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INT_RANGE_EXCEEDED.Message());
         }

@@ -16,9 +16,7 @@ public class InputView {
         System.out.println(Prompt.INPUT_LOTTO_PURCHASE_AMOUNT.Text());
         String input = Console.readLine();
 
-        int lottoPurchaseAmount = inputParser.parseToInt(input);
-
-        return lottoPurchaseAmount;
+        return inputParser.parseToInt(input);
     }
 
     public List<Integer> readWinningNumbers() {
@@ -26,9 +24,7 @@ public class InputView {
         System.out.println(Prompt.INPUT_WINNING_NUMBERS.Text());
         String input = Console.readLine();
 
-        List<Integer> winningNumbers = inputParser.parseToIntegerList(input);
-
-        return winningNumbers;
+        return inputParser.parseToIntegerList(input);
     }
 
     public int readBonusNumber() {
@@ -36,8 +32,6 @@ public class InputView {
         System.out.println(Prompt.INPUT_BONUS_NUMBER.Text());
         String input = Console.readLine();
 
-        int bonusNumber = inputParser.parseToInt(input);
-
-        return bonusNumber;
+        return inputParser.parseToInt(input);
     }
 }
