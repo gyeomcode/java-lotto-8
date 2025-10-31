@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import static lotto.common.LottoRule.LOTTO_NUMBERS_LENGTH;
+
 import java.util.List;
+import lotto.common.LottoRule;
+import lotto.exception.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -9,12 +13,20 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-    
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_LENGTH.Message());
+        }
+
+        if (numbers.stream().distinct().toList().size() != LOTTO_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO.Message());
+        }
+
+        if (numbers.stream()
+                .anyMatch(number -> number < LottoRule.LOTTO_NUMBER_MIN_VALUE
+                        || number > LottoRule.LOTTO_NUMBER_MAX_VALUE)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.Message());
         }
     }
-
-    // TODO: 추가 기능 구현
 }
