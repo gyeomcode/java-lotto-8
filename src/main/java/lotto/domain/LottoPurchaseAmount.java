@@ -11,6 +11,10 @@ public class LottoPurchaseAmount {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validate(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT_NON_POSITIVE.Message());
