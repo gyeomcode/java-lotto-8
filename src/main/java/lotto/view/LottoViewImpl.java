@@ -57,7 +57,7 @@ public class LottoViewImpl implements LottoView {
 
         Arrays.stream(LottoPrize.values()).forEach(lottoPrize -> {
             String formatted = String.format(Prompt.OUTPUT_WINNING_RESULT_FORMAT.Text(),
-                    lottoPrize.matchCount(),
+                    lottoPrize.Message(),
                     NumberFormat.getInstance().format(lottoPrize.Amount()),
                     winningResult.getOrDefault(lottoPrize, 0)
             );
