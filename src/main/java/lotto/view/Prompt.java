@@ -7,7 +7,7 @@ public enum Prompt {
     OUTPUT_LOTTO_COUNT_SUFFIX("개를 구매했습니다."),
     OUTPUT_WINNING_RESULT_TITLE("당첨 통계\n---"),
     OUTPUT_WINNING_RESULT_FORMAT("%s (%s원) - %d개"),
-    OUTPUT_PROFIT_RATE_FORMAT("총 수익률은 %.1f%%입니다.");
+    OUTPUT_PROFIT_RATE_FORMAT("총 수익률은 %,.1f%%입니다.");
 
     private final String text;
 
