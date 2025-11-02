@@ -95,6 +95,16 @@ class LottoServiceImplTest {
         assertThat(result).isEqualTo(187.5);
     }
 
+    @DisplayName("수익률을 둘째 자리에서 반올림한다.")
+    @ParameterizedTest
+    @CsvSource({"100,100.0", "51.47,51.5", "999999.97,1000000.0"})
+    void 수익률_반올림을_확인한다(String input, String expected) {
+        double profitRate = Double.parseDouble(input);
+
+        assertThat(Math.round(profitRate * 10) / 10.0)
+                .isEqualTo(Double.parseDouble(expected));
+    }
+
     private static Stream<Arguments> providerForFindPrize() {
         return Stream.of(
                 Arguments.of(5_000, 3, false),
