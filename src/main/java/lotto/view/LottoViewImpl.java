@@ -67,8 +67,7 @@ public class LottoViewImpl implements LottoView {
 
     @Override
     public void printProfitRate(double profitRate) {
-        String formatted = String.format(Prompt.OUTPUT_PROFIT_RATE_FORMAT.Text(),
-                NumberFormat.getInstance().format(profitRate));
+        String formatted = String.format(Prompt.OUTPUT_PROFIT_RATE_FORMAT.Text(), profitRate);
         System.out.println(formatted);
     }
 }
