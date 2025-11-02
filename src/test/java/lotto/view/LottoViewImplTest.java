@@ -2,12 +2,9 @@ package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.parser.LottoInputParserImpl;
 import org.junit.jupiter.api.Test;
 
 class LottoViewImplTest {
-
-    private LottoView lottoView = new LottoViewImpl(new LottoInputParserImpl());
 
     @Test
     void 수익률에_천단위구분쉼표_확인한다() {
